@@ -1,0 +1,31 @@
+pipeline{
+    agent{
+        Docker{
+            image 'node6-alpine'
+            args -p 3000:3000
+        }
+    }
+    enviroment {
+        CI = 'true'
+    }
+    stages{
+        stage('Build'){
+            steps
+            {
+                sh npm install
+            }
+        }
+        stage('Test'){
+            steps{
+                sh '.jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deliver'){
+            steps{
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the website ? Click to proceed'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+    }   
+}
