@@ -15,7 +15,7 @@ pipeline {
             sh 'npm config ls'
             }
         }
-    
+    }
     stages {
         stage('Build') {
             steps {
