@@ -9,14 +9,14 @@ pipeline {
     // environment {
     //         CI = 'true'
     //     }
-    stages {
+    stage {
         stage('check') {
             steps {
             sh 'npm config ls'
             }
         }
     }
-    stages {
+    stage {
         stage('Build') {
             steps {
                 sh 'npm install'
