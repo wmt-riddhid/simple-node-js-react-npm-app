@@ -1,22 +1,18 @@
 pipeline {
-    agent {
-        any {
-            tools {nodejs "node"}
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
+    agent any
+
+    tools {nodejs "node"}
     // environment {
     //         CI = 'true'
     //     }
-    stage {
+    stages {
+
         stage('check') {
             steps {
-            sh 'npm config ls'
+                sh 'npm config ls'
             }
         }
-    }
-    stage {
+
         stage('Build') {
             steps {
                 sh 'npm install'
